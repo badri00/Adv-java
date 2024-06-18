@@ -1,0 +1,36 @@
+db: automobile
+
+CREATE TABLE User (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    city VARCHAR(255) NOT NULL,
+    contactNumber VARCHAR(15) NOT NULL
+);
+
+CREATE TABLE Vehicle (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Vname VARCHAR(255) NOT NULL,
+    Company ENUM('Hero', 'Honda', 'Bajaj') NOT NULL,
+    Vnumber VARCHAR(255) NOT NULL,
+    Vtype VARCHAR(255) NOT NULL,
+    Uid INT,
+    FOREIGN KEY (Uid) REFERENCES User(Uid)
+);
+
+-- Dummy data fed directily in mysql
+-- Inserting sample data for user
+INSERT INTO user (user_id, username, email, password, city, contact_number)
+VALUES
+    (1, 'John Doe', 'john@example.com', 'password123', 'New York', '1234567890'),
+    (2, 'Jane Smith', 'jane@example.com', 'securepwd', 'Los Angeles', '9876543210'),
+    (3, 'Alice Johnson', 'alice@example.com', 'mypassword', 'Chicago', '5551234567');
+
+
+-- Inserting sample data for vehicle
+INSERT INTO vehicles (vehicle_id, vehicle_name, company, vehicle_number, vehicle_type, user_id)
+VALUES
+    (1, 'Splendor', 'HERO', 'MH09AB1111', 'BIKE', 1),
+    (2, 'Amaze', 'HONDA', 'MH10CD2222', 'SEDAN', 2),
+    (3, 'Pulsar', 'BAJAJ', 'MHEF3333', 'CRUISER', 3);
